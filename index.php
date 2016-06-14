@@ -2,4 +2,4 @@
 
 define('APP_DEBUG', true);
 require './ThinkPHP/ThinkPHP.php';
-123
+12234
