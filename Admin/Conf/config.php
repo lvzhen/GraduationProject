@@ -4,4 +4,3 @@ return array(
 	'LOGIN_NAME' => 'admin',
 	'LOGIN_PWD' => md5('admin'),
 );
-123
