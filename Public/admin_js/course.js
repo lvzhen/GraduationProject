@@ -26,6 +26,7 @@ $(function(){
 				dataType:'json',
 				data:'name='+name+'&brief='+brief+'&type='+type,
 				success:function(data){
+					// console.log(data);
 					$('#add').modal('hide');
 					$('.success').html('添加课程成功。');
 					$("#table").load(location.href+" #table");

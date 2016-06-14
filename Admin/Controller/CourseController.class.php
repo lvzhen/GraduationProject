@@ -109,22 +109,24 @@
             $typeDb = M('coursetype');
             $courseDb = M('course');
             $rs['type'] = $typeDb->getField('id,class_type', true);
-            if (session('admin_user.id') !== null) {
+            if (session('admin_user.isteach') !== '2') {
                 $id = session('admin_user.id');
                 $course = $courseDb->alias('c')
                     ->where('c.teacher=' . $id)
                     ->join('coursetype ct ON c.course_type = ct.id', 'left')
                     ->join('user u ON c.teacher = u.id','left')
                     ->field('c.id,c.course_name,ct.class_type,c.teacher,c.join_num,c.addtime,c.course_type,c.course_brief,c.course_pic,u.user')
-                    ->order('c.id desc')->select();
+                    ->order('c.id desc')
+                    ->select();
             } else {
                 $course = $courseDb->alias('c')
                     ->join('coursetype ct ON c.course_type = ct.id', 'left')
                     ->join('user u ON c.teacher = u.id','left')
                     ->field('c.id,c.course_name,ct.class_type,c.teacher,c.join_num,c.addtime,c.course_type,c.course_brief,c.course_pic,u.user')
-                    ->order('c.id desc')->select();
+                    ->order('c.id desc')
+                    ->select();
             }
-            //dump($course);
+            // dump($course);
             //exit();
             $this->assign('type', $rs['type']);
             $this->assign('course', $course);
@@ -145,7 +147,8 @@
             } else {
                 $data['course_type'] = null;
             }
-            $data['teacher'] = I('session.admin_user', 1);
+            $auser = I("session.admin_user");
+            $data['teacher'] = $auser['id'];
             $data['join_num'] = 0;
             $data['course_pic'] = '/GraduationProject/Public/img/course.png';
             $courseDb = M('course');

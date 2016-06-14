@@ -20,7 +20,7 @@
 			</li>
 		</ul>
 	</li>
-	<empty name='Think.session.admin_user.id'>
+	<eq name='Think.session.admin_user.isteach' value='2'>
 		<li>
 			<a href="javascript:void(0);" data-toggle="collapse" data-target="#user_management"><i class="fa fa-fw fa-users"></i>
 				用户
@@ -35,7 +35,7 @@
 
 	        </ul>
 		</li>
-	</empty>
+	</eq>
 </block>
 
 <block name='course_manage'>
@@ -91,7 +91,7 @@
 
 								</td>
 								<td>{$v.join_num}</td>
-								<td><empty name="v.user">admin<else/>{$v.user}</empty><br/><small>{$v['0']['course_name']}</small></td>
+								<td>{$v.user}<br/><small>{$v['addtime'] | date="y-m-d",###}</small></td>
 								<td>
 									<div class="btn-group">
 										<button class="btn btn-default btn-sm modify" data-toggle="modal" data-target="#edit" data-id="{$v.id}" data-coursename='{$v.course_name}' data-type="{$v.course_type}" data-brief="{$v.course_brief}"><i class="fa fa-fw fa-edit"></i> 编辑</button>

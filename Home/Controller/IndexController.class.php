@@ -88,8 +88,12 @@ class IndexController extends Controller {
 		$typeDb = M('coursetype');
 		$rs = $courseDb->select();
 		$type = $typeDb->select();
-		$s = $_GET['sort'];
-		$t = $_GET['type'];
+		if (isset($_GET['sort'])) {
+			$s = $_GET['sort'];
+		}
+		if (isset($_GET['type'])) {
+			$t = $_GET['type'];
+		}
 		if (isset($t) && isset($s)) {
 			$count = $courseDb->where("course_type='{$t}'")->count();
 			$Page = new \Think\Page($count, 8);
@@ -143,7 +147,7 @@ class IndexController extends Controller {
 		$rs = $courseDb->alias('c')->where("c.id=$id")
 			->join('lesson l on c.id=l.cid', 'left')
 			->join('coursetype ct on c.course_type=ct.id', 'left')
-			// ->join('user u on c.teacher=u.id')
+			->join('user u on c.teacher=u.id','left')
 			->field('*,c.id coid,l.id leid')
 			->select();
 		// dump($rs);
@@ -203,7 +207,7 @@ class IndexController extends Controller {
 		$rs = $ucDb->alias('uc')->where('uc.id=' . $ucid)
 			->join('course c on uc.cid=c.id', 'left')
 			->join('lesson l on l.cid=uc.cid', 'left')
-			// ->join('user u on c.teacher=u.id')
+			->join('user u on c.teacher=u.id')
 			->select();
 		foreach ($rs as $k => $v) {
 			$ul['lord'] = $v['order'];
@@ -219,6 +223,7 @@ class IndexController extends Controller {
 		$rs = $ucDb->alias('uc')->where('uc.id=' . $ucid)
 			->join('course c on uc.cid=c.id', 'left')
 			->join('lesson l on l.cid=uc.cid', 'left')
+			->join('user u on c.teacher=u.id','left')
 			->join('userlesson ul on l.order=ul.lord and uc.id=ul.ucid', 'left')
 			->join('coursetype ct on c.course_type=ct.id', 'left')
 			->field('*,uc.id ucid,uc.cid cid')

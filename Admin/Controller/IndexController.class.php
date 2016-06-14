@@ -21,13 +21,15 @@
             $user['name'] = trim(I('post.user_admin'));
             $user['pwd'] = md5(trim(I('post.pwd_admin')));
             $usrDb = M('user');
-            $rs = $usrDb->where('user="' . $user['name'] . '" and isteach=1')->find();
-            if (C('LOGIN_NAME') == $user['name'] || $rs) {
+            $rs = $usrDb->where('user="' . $user['name'] . '" and isteach=1 or isteach=2')->find();
+            // var_dump($rs);
+            if ($rs) {
                 $user['id'] = $rs['id'];
-                if (C('LOGIN_PWD') == $user['pwd'] || $rs['pwd'] == $user['pwd']) {
+                $user['isteach'] = $rs['isteach'];
+                if ($rs['pwd'] == $user['pwd']) {
                     if ($user['id']) {
                         $d['lasttime'] = time();
-                        $usrDb->where('id=' . $rs['id'])->save($d);
+                        $usrDb->where('id=' . $user['id'])->save($d);
                     }
                     session('admin_user', $user);
                     $this->success('登录成功!', U('Admin/Index/index'));

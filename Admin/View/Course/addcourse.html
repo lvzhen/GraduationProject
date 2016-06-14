@@ -20,7 +20,7 @@
 			</li>
 		</ul>
 	</li>
-	<empty name='Think.session.admin_user.id'>
+	<eq name='Think.session.admin_user.isteach' value='2'>
 		<li>
 			<a href="javascript:void(0);" data-toggle="collapse" data-target="#user_management"><i class="fa fa-fw fa-users"></i>
 				用户
@@ -35,7 +35,7 @@
 	            
 	        </ul>
 		</li>
-	</empty>
+	</eq>
 </block>
 <block name='course_manage'>
 	<div class="row">
@@ -125,17 +125,17 @@
 				}
 				$('#save').html(icon);
 				$('#save').attr('disabled',true);
-				$.ajax({
-					type:'post',
-					url:"{:U('Admin/Course/addClass')}",
-					data:
-				});
+				// $.ajax({
+				// 	type:'post',
+				// 	url:"{:U('Admin/Course/addClass')}",
+				// 	data:
+				// });
 
 				
 				
-				$('.msg').html('创建成功');
-				$('.info').addClass('hide');
-				$('.info-success').removeClass('hide');
+				// $('.msg').html('创建成功');
+				// $('.info').addClass('hide');
+				// $('.info-success').removeClass('hide');
 			});
 		});
 	</script>>
