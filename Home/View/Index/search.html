@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>搜索</title>
+	<link rel="stylesheet" href="/GraduationProject/Public/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/GraduationProject/Public/css/style.css" />
+	<link rel="stylesheet" href="/GraduationProject/Public/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="/GraduationProject/Public/css/search.css" />
+</head>
+<body>
+	<empty name="Think.session.user">
+		<include file="Public/header" />
+		<else />
+		<include file="Public/header-login"/>
+	</empty>
+	<div id="main">
+		<div class="container">
+			<ul class="list-inline">
+				<li class="item"> <b>课程</b>
+				</li>
+			</ul>
+			<div class="result">
+				<div class="result-header">
+					为您找到相关课程
+					<span>
+						<empty name='count'>
+							0
+							<else />
+							{$count}
+						</empty>
+					</span>
+					个
+				</div>
+				<ul class="search-course">
+					<empty name='res'>
+						<h5 style="padding-left:20px;">没有搜索到！！</h5>
+						<else/>
+						<foreach name='res' item='v'>
+							<empty name="Think.session.user">
+								<a href="{:U('index/course',array('id'=>$v['id']))}">
+					    	<else />
+						    	<empty name='isjoin'>
+						    		<a href="{:U('index/course',array('id'=>$v['id']))}">
+						    		<else/>
+							    	<foreach name='isjoin' item='vv'>
+										<eq name="vv['cid']" value="$v['id']">
+											<a href="{:U('index/courselist',array('id'=>$v['id']))}">
+											<?php break; ?>
+											<else/>
+											<a href="{:U('index/course',array('id'=>$v['id']))}">
+										</eq>
+									</foreach>
+								</empty>
+							</empty>
+								<li class="course-item">
+									<div class="course-item-content">
+										<div class="thumbnai">
+											<div class="thumbnail-inner">
+													<img src="{$v.course_pic}" alt="">
+											</div>
+										</div>
+										<div class="introduction">
+											<h2 class="title">
+												{$v.course_name}
+											</h2>
+											<div class="description"><empty name='v.course_brief'> 暂无简介 <else/> {$v.course_brief} </empty> </div>
+										</div>
+									</div>
+								</li>
+							</a>
+						</foreach>
+					</empty>
+					<!-- <li class="course-item">
+					<div class="course-item-content">
+						<div class="thumbnai">
+							<div class="thumbnail-inner">
+								<a href="#" target="_blank">
+									<img src="/GraduationProject/Public/img/course.png" alt=""></a>
+							</div>
+						</div>
+						<div class="introduction">
+							<h2 class="title">
+								<a href="#">php进阶篇</a>
+							</h2>
+						</div>
+					</div>
+				</li>
+				-->
+			</ul>
+		</div>
+		<div class="page">
+			{$page}
+			<!-- {$page} -->
+			<!-- <span class="disabled_page">首页</span>
+			<span class="disabled_page">上一页</span>
+			<a href="#" class="active">1</a>
+			<a href="#">2</a>
+			<a href="#">3</a>
+			<a href="#">下一页</a>
+			<a href="#">尾页</a>
+			-->
+		</div>
+</div>
+</div>
+
+<include file='public/footer' />
+<script src="/GraduationProject/Public/js/jquery.min.js"></script>
+<script src="/GraduationProject/Public/js/bootstrap.min.js"></script>
+<block name='script'></block>
+</body>
+</html>

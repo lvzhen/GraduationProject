@@ -1,0 +1,28 @@
+<div class="modal-body">
+	<h5>结果：{$score}/{$count}</h5>
+	<hr>
+	<div>
+		<h5>您的回答：</h5>
+		<foreach name='rs' item='v'>
+			<dl>
+				<dt>{$v.subject}</dt>
+					<empty name='myansw[$v["id"]]'>
+					<dd>您的回答:无</dd>
+					<else/>
+							<if condition="$_SESSION['q'.$v['id']] eq $v['answer']">
+								<dd class="text-success">您的回答:{$myansw[$v['id']]}</dd>
+								<else />
+								<dd class="text-danger">您的回答:{$myansw[$v['id']]}</dd>
+								<dd class="text-info">正确答案:<?php echo $v['option_'.$v['answer']] ?></dd>
+							</if>
+					</empty>
+				
+			</dl>
+		</foreach>
+	</div>
+</div>
+
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	<button type="button" class="btn btn-primary" data-dismiss="modal">确认</button>
+</div>

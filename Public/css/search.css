@@ -1,0 +1,125 @@
+@charset "utf8";
+
+#main{
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+.item{
+	padding: 0 44px 18px !important;
+	font-size: 16px;
+	font-weight: 700;
+}
+.result-header{
+	padding: 0px 20px;
+	height: 40px;
+	line-height: 40px;
+	border-top: 1px solid #D0D6D9;
+	background-color: #F9F9F9;
+    color: #787D82;
+    font-size: 12px;
+}
+#main ul{
+	padding: 0px;
+	margin:0px;
+	list-style: none;
+}
+.search-course .course-item {
+    padding: 30px 0 29px;
+    border-bottom: 1px solid #99CCFF;
+}
+.course-item .thumbnai {
+    width: 230px;
+}
+.course-item-content {
+    display: table;
+    table-layout: fixed;
+}
+.course-item .thumbnai, .course-item .introduction {
+    display: table-cell;
+}
+.course-item .thumbnail-inner {
+    width: 210px;
+    overflow: hidden;
+}
+.course-item .thumbnai img {
+    width: 210px;
+    height: 118px;
+}
+.course-item .introduction {
+    font-size: 14px;
+    line-height: 22px;
+    vertical-align: top;
+}
+.course-item .title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 9px;
+    margin-top: 0px;
+}
+.title a:link, a:visited {
+    color: #14191e;
+}
+.page {
+    margin: 25px 0 auto;
+    overflow: hidden;
+    clear: both;
+    text-align: center;
+}
+.page span {
+    display: inline-block;
+    padding: 0 5px;
+    min-width: 20px;
+    height: 39px;
+    line-height: 39px;
+    font-size: 14px;
+    color: #c8cdd2;
+    text-align: center;
+}
+.page a {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 0 5px;
+    min-width: 20px;
+    height: 29px;
+    line-height: 30px;
+    font-size: 14px;
+    color: #787d82;
+    text-align: center;
+    border-bottom: 1px solid transparent;
+    -webkit-transition: border-color 0.2s;
+    -moz-transition: border-color 0.2s;
+    transition: border-color 0.2s;
+}
+.page a:hover {
+    border-color: #cc0000;
+    color: #cc0000;
+    text-decoration: none;
+}
+.page a.active {
+    background: #cc0000;
+    color: #ffffff;
+    border-color: transparent;
+}
+.page span.current {
+    background: #cc0000;
+    color: #ffffff;
+    border-color: transparent;
+}
+.page span {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 0 5px;
+    min-width: 20px;
+    height: 29px;
+    line-height: 30px;
+    font-size: 14px;
+    color: #787d82;
+    text-align: center;
+    border-bottom: 1px solid transparent;
+    -webkit-transition: border-color 0.2s;
+    -moz-transition: border-color 0.2s;
+    transition: border-color 0.2s;
+}
+.search-course a{
+    text-decoration: none;
+}

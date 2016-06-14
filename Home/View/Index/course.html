@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>我的在线学习网站</title>
+	<link rel="stylesheet" href="/GraduationProject/Public/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/GraduationProject/Public/css/style.css" />
+	<link rel="stylesheet" href="/GraduationProject/Public/css/course.css" />
+	<link rel="stylesheet" href="/GraduationProject/Public/css/courselist.css" />
+	<link rel="stylesheet" href="/GraduationProject/Public/css/font-awesome.min.css" />
+<body>
+	<empty name="Think.session.user">
+    	<include file="Public/header" />
+    	<else />
+    	<include file="Public/header-login"/>
+    </empty>
+	<section class="course-header-new">
+		<div class="container">
+			<div class="bread_crumb">
+				<div class="breadcrumb">
+					<a href="{:U('index/Allcourse')}">课程</a>
+					<span>></span>
+					<a href="{:U('Index/allcourse',array('type'=>$rs[0]['course_type']))}">{$rs.0.class_type}</a>
+					<span>></span>
+					<span>{$rs.0.course_name}</span>
+				</div>
+			</div>
+			<div class="row hz-course-before clearfix">
+				<div class="pic col-md-5 col-xs-12">
+					<img src="{$rs.0.course_pic}" alt="" class="img-responsive">
+				</div>
+				<div class="info col-md-7 col-xs-12 pull-right">
+					<h1>{$rs.0.course_name}</h1>
+					<div class="score">
+						<span class="stars-5"> </span>
+						<span>5</span>
+						(4人评价)
+					</div>
+					<ul class="metas clearfix">
+						<li class="bd">
+							<i class="glyphicon glyphicon-book"></i>
+							<p>课时：({$num})</p>
+						</li>
+						<li class="bd">
+							<i class="glyphicon glyphicon-user"></i>
+							<p>学员：({$rs.0.join_num})</p>
+						</li>
+						<li>
+							<i class="glyphicon glyphicon-headphones"></i>
+							<p>浏览：({$bnum})</p>
+						</li>
+						<li class="join">
+							<block name='join'>
+							<a href="{:U('Index/courselist',array('id'=>$rs[0]['coid']))}" class="btn btn-primary">
+										加入课程
+							</a>
+							</block>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="container">
+		<div class="row">
+			<div class="col-md-9">
+			<block name='info'>
+				<div class="course-lessons flat">
+					<div class="course-nav clearfix affix-top">
+						<ul class="nav">
+							<li class="active">
+								<a href="#">简介</a>
+							</li>
+						</ul>
+					</div>
+					<div class="hz-overview hzcourse-detail">
+						<h3 class="overview-title hz-line-left">课程简介</h3>
+						<div class="editor-text ptl">
+							<p>
+								<empty name="rs.0.course_brief">
+									暂无课程简介！！！
+									<else/>
+									{$rs.0.course_brief}
+								</empty>
+							</p>
+						</div>
+						<h3 class="overview-title hz-line-left">课程列表</h3>
+						<ul class="period-list hz-courselist" id="course-item-list">
+							<empty name='rs.0.name'>
+								<div class="editor-text ptl">
+									暂无课程！！！
+								</div>
+							<else/>
+								<foreach name='rs' item='v' key='k'>
+									<li class="period lesson-item" data-num="1">
+										<!-- <a href="#" target="_blank" title="詹姆斯 于震的风光摄影秘籍的滤镜基础知识">  -->
+										<span> 
+											<i class="fa fa-circle-o status-icon status"></i>
+											<span class="title">L{$k+1}：{$v.name}</span>
+											<span class="course-type">
+												<i class="fa fa-video-camera"></i>
+											</span>
+										</span>
+										<!-- </a> -->
+									</li>
+								</foreach>
+							</empty>
+						</ul>
+					</div>
+				</div>
+			</block>
+			</div>
+			<aside class="col-md-3 course-sidebar">
+				<div class="flat sidebar-teach media">
+					<h3>课程教师</h3>
+					<div class="media-left">
+						<a href="#" class=" js-user-card">
+							<img class="avatar-sm" src="/GraduationProject/Public/img/avatar.png" alt="">
+						</a>
+					</div>
+					<div class="teach-info media-body">
+						<p>lvzhen</p>
+						<p class="job">
+							<empty name='rs.0.intro'>
+								---
+								<else/>
+								{$rs.0.intro}
+							</empty>
+						</p>
+					</div>
+				</div>
+				<block name='test'>
+				</block>
+			</aside>
+		</div>
+	</section>
+
+
+	<include file='public/footer' />
+	<script src="/GraduationProject/Public/js/jquery.min.js"></script>
+	<script src="/GraduationProject/Public/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.join').on('click',function(){
+				<empty name="Think.session.user">
+					var content_html = '<include file="public/login" />';
+					$('.modal-content').html(content_html);
+					var url = $('.join > a ').attr('href');
+					// alert(url);
+					$('#myModal').data('url',url);
+					$('#myModal').modal();
+					return false;
+				</empty>
+			});
+		});
+	</script>
+	<block name='script'>
+		
+	</block>
+	
+</body>
+</html>

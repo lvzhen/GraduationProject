@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>我的学习网站</title>
+	<link rel="stylesheet" href="/GraduationProject/Public/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/GraduationProject/Public/css/style.css">
+	<link rel="stylesheet" href="/GraduationProject/Public/css/index.css"></head>
+	<link rel="stylesheet" href="/GraduationProject/Public/css/font-awesome.min.css" />
+<body>
+    <empty name="Think.session.user">
+    	<include file="Public/header" />
+    	<else />
+    	<include file="Public/header-login"/>
+    </empty>
+	<!-- 轮播图 -->
+	<div id="myCarousel" class="carousel slide">
+		<ol class="carousel-indicators">
+			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			<li data-target="#myCarousel" data-slide-to="1"></li>
+			<li data-target="#myCarousel" data-slide-to="2"></li>
+		</ol>
+		<div class="carousel-inner">
+			<div class="item active">
+				<img src="/GraduationProject/Public/img/slide1.png" alt="第一张"></div>
+			<div class="item" style="background: rgb(58, 115, 156">
+				<img src="/GraduationProject/Public/img/slide2.png" alt="第二张"></div>
+			<div class="item" style="background: rgb(242, 236, 208);">
+				<img src="/GraduationProject/Public/img/slide3.png" alt="第三张"></div>
+		</div>
+		<a href="#myCarousel" data-slide="prev" class="carousel-control left">
+			<span class="glyphicon glyphicon-chevron-left"></span>
+		</a>
+		<a href="#myCarousel" data-slide="next" class="carousel-control right">
+			<span class="glyphicon glyphicon-chevron-right"></span>
+		</a>
+	</div>
+	<!-- 轮播图结束 -->
+	<!-- 课程展示 -->
+	<div class="course-list">
+		<div class="container">
+			<div class="row text-center">
+				<h1 class="lesson text-center">课程</h1>
+				<foreach name='rs' item='v'>
+					<div class="col-md-3 col-sm-6">
+						<empty name="Think.session.user">
+							<a href="{:U('index/course',array('id'=>$v['id']))}">
+					    	<else />
+					    	<empty name='isjoin'>
+					    		<a href="{:U('index/course',array('id'=>$v['id']))}">
+					    		<else/>
+						    	<foreach name='isjoin' item='vv'>
+									<eq name="vv['cid']" value="$v['id']">
+										<a href="{:U('index/courselist',array('id'=>$v['id']))}">
+										<?php break; ?>
+										<else/>
+										<a href="{:U('index/course',array('id'=>$v['id']))}">
+									</eq>
+								</foreach>
+							</empty>
+					    </empty>
+							<div class="course-item">
+								<div class="course-img">
+									<img class="courseimg" src="{$v.course_pic}" alt="lesson"></div>
+								<div class="course-info">
+									<div class="title">
+										<foreach name='isjoin' item='vv'>
+											<eq name="vv['cid']" value="$v['id']">
+												<span>已学</span>
+											</eq>
+										</foreach>
+										{$v.course_name}
+									</div>
+									<div class="metas clearfix">
+										<span class="update-time">{$v.addtime|date="y-m-d",###}</span>
+										<span class="num">{$v.join_num}人参加</span>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</foreach>
+			</div>
+		</div>
+	</div>
+	<notempty name='rs'>
+		<div class="text-center more">
+			<a href="{:U('Index/AllCourse')}" class="btn btn-default">更多课程</a>
+		</div>
+	<else />
+		<div class="text-center more">
+			<a href="javascript:void(0);" class="btn btn-default">暂无课程！！</a>
+		</div>
+	</notempty>
+	<!-- 课程展示结束 -->
+	<include file="Public/footer" />
+
+	<script src="/GraduationProject/Public/js/jquery.min.js"></script>
+	<script src="/GraduationProject/Public/js/bootstrap.min.js"></script>
+	<script src="/GraduationProject/Public/js/index.js"></script>
+</body>
+</html>

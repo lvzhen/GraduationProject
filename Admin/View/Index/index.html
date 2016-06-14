@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <META HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
+    <title>后台管理</title>
+    <link rel="stylesheet" href="/GraduationProject/Public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/GraduationProject/Public/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/GraduationProject/Public/admin_css/index.css">
+    <link rel="stylesheet" href="/GraduationProject/Public/upload/css/jquery.fileupload-ui.css">
+    <link href="/GraduationProject/Public/scrollplugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"
+          type="text/css">
+</head>
+<body>
+<nav class="navbar navbar-default navbar-inverse top" role="navigation">
+    <div class="navbar-header">
+        <h5 class="navbar-text"><i class="fa fa-fw fa-dashboard"></i> <b>后台管理</b>
+        </h5>
+    </div>
+    <div>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    {$Think.session.admin_user.name}
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <notempty name='Think.session.admin_user.id'>
+                        <li><a href="{:U('Index/changepwd')}">修改密码</a></li>
+                    </notempty>
+                    <li class="signout"><a href="javascript:void(0);">退出</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="main">
+    <div class="row">
+        <div class="col-md-2 left-menu mCustomScrollbar" data-mcs-theme="minimal">
+            <ul class="nav nav-pills nav-stacked navbar-inverse">
+                <block name='nav'>
+                    <li class="active">
+                        <a href="{:U('Index/index')}"><i class="fa fa-fw fa-home"></i> 首页</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#course_management"><i
+                                class="fa fa-fw fa-calendar"></i>
+                            课程
+                            <i class="fa fa-fw fa-caret-right d fa-caret-down r"></i>
+                        </a>
+                        <ul id="course_management" class="collapse">
+                            <li>
+                                <a href="{:U('Course/course')}">课程管理</a>
+                            </li>
+                            <li>
+                                <a href="{:U('Course/coursetype')}">课程类型管理</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <empty name='Think.session.admin_user.id'>
+                        <li>
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#user_management"><i
+                                    class="fa fa-fw fa-users"></i>
+                                用户
+                                <i class="fa fa-fw fa-caret-right fa-caret-down dd r"></i>
+                            </a>
+                            <ul id="user_management" class="collapse">
+                                <li>
+                                    <a href="{:U('User/user')}">用户管理</a>
+                                </li>
+                                <li>
+                                    <a href="{:U('User/teacher')}">教师管理</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </empty>
+                </block>
+            </ul>
+        </div>
+        <div class="col-md-10 col-md-offset-2 right mCustomScrollbar" data-mcs-theme="minimal-dark">
+            <div class="container-fluid">
+                <block name='course_manage'>
+                    <div class="well">
+                        <h3>Welcome,Admin!</h3>
+                    </div>
+                </block>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/GraduationProject/Public/js/jquery.min.js"></script>
+<script src="/GraduationProject/Public/js/bootstrap.min.js"></script>
+<script src="/GraduationProject/Public/upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="/GraduationProject/Public/upload/js/jquery.iframe-transport.js"></script>
+<script src="/GraduationProject/Public/upload/js/jquery.fileupload.js"></script>
+<script src="/GraduationProject/Public/scrollplugin/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#course_management').on('show.bs.collapse', function () {
+            $('.d').removeClass('fa-caret-right');
+        });
+        $('#course_management').on('hide.bs.collapse', function () {
+            $('.d').addClass('fa-caret-right');
+        });
+        $('#user_management').on('show.bs.collapse', function () {
+            $('.dd').removeClass('fa-caret-right');
+        });
+        $('#user_management').on('hide.bs.collapse', function () {
+            $('.dd').addClass('fa-caret-right');
+        });
+        $('.signout').on('click', function () {
+            $.ajax({
+                type: 'post',
+                url: '{:U("Index/signout")}',
+                data: '',
+                dataType: 'json',
+                success: function (data) {
+                    window.location.href = "{:U('Index/index')}";
+                }
+            });
+        });
+    });
+</script>
+<block name='script'>
+</block>
+</body>
+</html>

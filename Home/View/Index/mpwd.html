@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>修改密码</title>
+	<link rel="stylesheet" href="/GraduationProject/Public/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/GraduationProject/Public/css/style.css" />
+	<link rel="stylesheet" href="/GraduationProject/Public/css/mpwd.css" />
+	<link rel="stylesheet" href="/GraduationProject/Public/css/font-awesome.min.css" />
+</head>
+<body>
+	<empty name="Think.session.user">
+    	<include file="Public/header" />
+    	<else />
+    	<include file="Public/header-login"/>
+    </empty>
+    <div class="panel panel-default" style="width:500px;">
+		<div class="panel-heading">
+			<h3 class="panel-title">修改密码</h3>
+		</div>
+		<div class="panel-body">
+			<div class="form-group fg">
+				<label for="pwd" class="col-sm-3 control-label cl">初始密码</label>
+				<div class="col-sm-9">
+					<input type="password" class="form-control" id="pwd" placeholder="请输入初始密码">
+				</div>
+			</div>
+			<div class="form-group fg">
+				<label for="npwd" class="col-sm-3 control-label cl">新密码</label>
+				<div class="col-sm-9">
+					<input type="password" class="form-control" id="npwd" placeholder="请输入新密码"></div>
+			</div>
+			<div class="form-group fg">
+				<label for="rpwd" class="col-sm-3 control-label cl">重复新密码</label>
+				<div class="col-sm-9">
+					<input type="password" class="form-control" id="rpwd" placeholder="重复输入新密码"></div>
+			</div>
+			<div class="sure">
+				<button type="button" class="btn btn-default">确定修改</button>
+			</div>
+		</div>
+	</div>
+	<script src="/GraduationProject/Public/js/jquery.min.js"></script>
+	<script type="text/javascript">
+		$('.sure .btn').on('click',function(){
+			var opwd = $('#pwd').val();
+			var npwd = $('#npwd').val();
+			var rpwd = $('#rpwd').val();
+			if (!opwd) {
+				alert('初始密码不能为空！');
+				return;
+			}
+			if (!npwd) {
+				alert('新密码不能为空！');
+				return;
+			}
+			if (!rpwd) {
+				alert('重复密码不能为空！');
+				return;
+			}
+			if (opwd && npwd && rpwd) {
+				if (npwd === rpwd) {
+					$.ajax({
+						type:'post',
+						url:"{:U('Index/modPwd')}",
+						data:'opwd='+opwd+'&npwd='+npwd,
+						dataType:'json',
+						success:function(data){
+							// console.log(data);
+							if (data == '-1') {
+								alert('初始密码错误');
+								return;
+							}
+							if (data == '1') {
+								alert('修改成功，需要重新登录！');
+								window.location.href = "{:U('Index/index')}";
+							}
+						}
+					});
+				} else {
+					alert('两次密码输入不一致！');
+					return;
+				}	
+			} 
+		});
+	</script>
+</body>
+</html>

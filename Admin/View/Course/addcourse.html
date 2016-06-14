@@ -1,0 +1,143 @@
+<extend name="Index/index" />
+<block name='nav'>
+	<li>
+		<a href="{:U('Index/index')}"> <i class="fa fa-fw fa-home"></i>
+			首页
+		</a>
+	</li>
+	<li>
+		<a href="javascript:void(0);" data-toggle="collapse" data-target="#course_management"> <i class="fa fa-fw fa-book"></i> 课程<i class="fa fa-fw fa-caret-down d r"></i>
+		</a>
+		<ul id="course_management" class="collapse in">
+			<li>
+                <a href="{:U('Course/course')}">课程管理</a>
+            </li>
+			<!-- <li class="active">
+				<a href="{:U('Course/addcourse')}">添加课程</a>
+			</li> -->
+			<li>
+				<a href="{:U('Course/coursetype')}">课程类型管理</a>
+			</li>
+		</ul>
+	</li>
+	<empty name='Think.session.admin_user.id'>
+		<li>
+			<a href="javascript:void(0);" data-toggle="collapse" data-target="#user_management"><i class="fa fa-fw fa-users"></i>
+				用户
+				<i class="fa fa-fw fa-caret-right fa-caret-down dd r"></i></a>
+			<ul id="user_management" class="collapse">
+				<li>
+	                <a href="{:U('User/user')}">用户管理</a>
+	            </li>
+	            <li>
+	                <a href="{:U('user/teacher')}">教师管理</a>
+	            </li>
+	            
+	        </ul>
+		</li>
+	</empty>
+</block>
+<block name='course_manage'>
+	<div class="row">
+		<div class="col-md-12">
+			<h1 class="page-header">添加课程</h1>
+			<ol class="breadcrumb">
+			  <li><a href="{:U('Course/index')}">首页</a></li>
+			  <li><a href="{:U('Course/course')}">课程管理</a></li>
+			  <li class="active">添加课程</li>
+			</ol>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="info hide">
+				<div class="alert alert-danger">
+	      			<div class="msg"></div>
+				</div>
+			</div>
+			<div class="info-success hide">
+				<div class="alert alert-success alert-dismissable">
+					<button type="button" class="close" data-dismiss="alert" 
+	      aria-hidden="true">&times;</button>
+	      			<div class="msg"></div>
+				</div>
+			</div>
+			<form class="form-horizontal" role="form">
+				<div class="form-group">
+					<label for="name" class="col-md-2 col-md-offset-1 control-label">课程名称</label>
+					<div class="col-sm-5">
+						<input type="text" class="form-control" id="name" name="name" placeholder="请输入课程名称">
+            		</div>
+				</div>
+				<div class="form-group">
+					<label for="brief" class="col-md-2 col-md-offset-1 control-label">课程简介</label>
+					<div class="col-sm-5">
+						<textarea class="form-control" id="brief" rows="3"></textarea>
+            		</div>
+				</div>
+				<div class="form-group">
+					<label for="type" class="col-md-2 col-md-offset-1 control-label">课程类型</label>
+					<div class="col-md-2">
+						<select class="form-control" name='type' id="type">
+							<option value="">请选择</option>
+							<option value="PHP">PHP</option>
+							<option value="JAVA">JAVA</option>
+							<option value="C">C</option>
+							<option value="C++">C++</option>
+							<option value="C#">C#</option>
+						</select>
+            		</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-2 col-md-offset-1 control-label">是否在首页展示</label>
+					<div class="col-md-2">
+						<select class="form-control" id="isshow" name="isshow">
+							<option value="1">是</option>
+							<option value="0">否</option>
+						</select>
+						<div style="width: 300px;margin-top: 5px;"><h6><small>只能展示最近添加推荐的6门课程，默认为展示。</small></h6></div>
+            		</div>
+				</div>
+				<div class="col-md-2 col-md-offset-3">
+					<button style="width: 100px;" type="button" class="btn btn-primary" id="save">创建</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</block>
+<block name='script'>
+	<script type="text/javascript">
+		$(function(){
+			$('#save').on('click',function(){
+				var name = $('#name').val();
+				var type = $('#type').val();
+				var brief = $('#brief').val();
+				var isshow = $('#isshow').val();
+				var icon = "正在创建 <i class='fa fa-spinner fa-spin'></i>";
+				if (!name) {
+					$('.msg').html('课程名不能为空');
+					$('.info').removeClass('hide');
+					return;
+				}else if (!type) {
+					$('.msg').html('类型不能为空');
+					$('.info').removeClass('hide');
+					return;
+				}
+				$('#save').html(icon);
+				$('#save').attr('disabled',true);
+				$.ajax({
+					type:'post',
+					url:"{:U('Admin/Course/addClass')}",
+					data:
+				});
+
+				
+				
+				$('.msg').html('创建成功');
+				$('.info').addClass('hide');
+				$('.info-success').removeClass('hide');
+			});
+		});
+	</script>>
+	
+</block>

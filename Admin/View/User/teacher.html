@@ -1,0 +1,186 @@
+<extend name="Index/index" />
+
+<block name='nav'>
+	<li>
+		<a href="{:U('Index/index')}"> <i class="fa fa-fw fa-home"></i>
+			首页
+		</a>
+	</li>
+	<li>
+		<a href="javascript:void(0);" data-toggle="collapse" data-target="#course_management"> <i class="fa fa-fw fa-book"></i>
+			课程
+			<i class="fa fa-fw fa-caret-right fa-caret-down d r"></i>
+		</a>
+		<ul id="course_management" class="collapse">
+			<li class="active">
+				<a href="{:U('Course/course')}">课程管理</a>
+			</li>
+			<li>
+				<a href="{:U('Course/coursetype')}">课程类型管理</a>
+			</li>
+		</ul>
+	</li>
+	<li>
+		<a href="javascript:void(0);" data-toggle="collapse" data-target="#user_management"><i class="fa fa-fw fa-users"></i>
+			用户
+			<i class="fa fa-fw fa-caret-down dd r"></i></a>
+		<ul id="user_management" class="collapse in">
+			<li>
+                <a href="{:U('User/user')}">用户管理</a>
+            </li>
+            <li class="active">
+                <a href="{:U('User/teacher')}">教师管理</a>
+            </li>
+            
+        </ul>
+	</li>
+</block>
+
+<block name='course_manage'>
+	<div class="row">
+		<div class="col-md-12">
+			<h3 class="page-header">教师管理</h3>
+			<ol class="breadcrumb">
+				<li>
+					<a href="{:U('Index/index')}">首页</a>
+				</li>
+				<li class="active">用户</li>
+				<li class="active">教师管理</li>
+			</ol>
+			<!-- 添加成功提示框 -->
+			<div id="success" class="alert alert-success hide">
+				<a href="#" class="close" data-dismiss="alert">&times;</a>
+				<div class="success"></div>
+			</div>
+			<!-- ** -->
+			<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#add">
+				<i class="fa fa-fw fa-plus"></i>
+				添加教师
+			</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div id="table">
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>教师</th>
+							<th>注册时间</th>
+							<th>最近登录</th>	
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<foreach name='rs' item='v'>
+							<tr>
+								<td>{$v.user}</td>
+								<td>{$v.regtime|date='Y-m-d H:i',###}</td>
+								<td>
+								<eq name='v.regtime' value='$v.lasttime'>
+								---
+								<else/>
+								{$v.lasttime|date='Y-m-d H:i',###}
+								</eq>
+								</td>
+								<td><button class="btn btn-sm btn-default modify" data-toggle="modal" data-target="#editpwd" data-id={$v.id} data-usr={$v.user}><i class="fa fa-fw fa-edit"></i>修改密码</button></td>
+							</tr>
+						</foreach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<!-- 添加教师模态框 -->
+	<div class="modal fade" id="add" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">添加教师</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form">
+						<div class="form-group left">
+							<label for="name" class="col-md-2 control-label">教师</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control name" name="name" placeholder="请输入教师用户名">
+								<div class="help-block"></div>
+							</div>
+						</div>
+						<div class="form-group left">
+							<label for="pwd" class="col-md-2 control-label">新密码</label>
+							<div class="col-md-9">
+								<input type="password" class="form-control pwd" name="pwd" placeholder="请输入密码">
+								<div class="help-block"></div>
+							</div>
+						</div>
+						<div class="form-group left">
+							<label for="rpwd" class="col-md-2 control-label">确认密码</label>
+							<div class="col-md-9">
+								<input type="password" class="form-control rpwd" name="rpwd" placeholder="请确认密码">
+								<div class="help-block"></div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-primary" id="save">添加</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 结束 -->
+
+	<!-- 修改密码模态框 -->
+	<div class="modal fade" id="editpwd" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">修改密码</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form">
+						<div class="form-group left">
+							<label for="name" class="col-md-2 control-label">用户名</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control name" disabled name="name">
+							</div>
+						</div>
+						<div class="form-group left">
+							<label for="pwd" class="col-md-2 control-label">新密码</label>
+							<div class="col-md-9">
+								<input type="password" class="form-control pwd" name="pwd">
+								<div class="help-block"></div>
+							</div>
+						</div>
+						<div class="form-group left">
+							<label for="rpwd" class="col-md-2 control-label">确认密码</label>
+							<div class="col-md-9">
+								<input type="password" class="form-control rpwd" name="rpwd">
+								<div class="help-block"></div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-primary" id="savepwd">保存</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ***结束** -->
+
+
+</block>
+<block name='script'>
+	<script src="/GraduationProject/Public/admin_js/teacher.js"></script>
+</block>

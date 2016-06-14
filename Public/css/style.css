@@ -1,0 +1,233 @@
+@charset "utf-8";
+
+body{
+	background-color: #EDEFF0;
+}
+/*导航栏样式*/
+.logo {
+	padding: 2px; 
+	/*padding-left: 50px;*/
+}
+.container>.navbar-header{
+	margin: 0 20px;
+}
+.navbar{
+	margin: 0px;
+}
+.login-btn{
+	margin: 0px;
+	padding: 6px 13px !important;
+	margin-top: 8px;
+}
+.navbar-default .navbar-nav>li>a:focus{
+	color: #777;
+}
+.navbar-nav>li>a.signup:hover {
+    color: #333;
+    background-color: transparent !important;
+}
+a:focus {
+     outline:none;
+     -moz-outline:none;
+}
+.btn:focus{
+     background-color: #fff;
+     outline: none;
+     -moz-outline:none;
+}
+.btn-default:focus{
+	border-color: #ccc;
+}
+.navbar-nav>li>a:hover{
+	background-color:#DDD !important;
+}
+.avatar {
+    width: 40px !important;
+    height: 40px !important;
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important;
+    border-radius: 50% !important;
+}
+.icon-msg{
+	font-size: 20px;
+}
+.avatar-a{	
+	margin: 0px !important;
+	padding: 0px !important;
+	height: 50px;
+	width: 80px;
+	line-height: 50px !important;
+	text-align: center;
+}
+.navbar-nav>li>a.avatar-a:hover {
+	background-color: transparent !important;
+}
+.navbar-nav>li>a{
+	-webkit-transition: background-color 0.3s;
+    -moz-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+}
+.user-card {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    width: 300px;
+    padding-top: 10px;
+    visibility: hidden;
+    z-index: 1000;
+}
+.user-card .fa-sort-asc {
+    position: absolute;
+    right: 30px;
+    top: 0px;
+    height: 10px;
+    color: #f01400;
+}
+.user-card .card-top {
+    padding-left: 100px;
+    height: 100px;
+    background: #f34131 url(/GraduationProject/Public/img/user_card_top.png) no-repeat center 0;
+    color: #fff;
+    position: relative;
+}
+.user-card .card-top img {
+    float: left;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    margin: 20px 0 0 -82px;
+}
+.user-card .card-top .name {
+    display: inline-block;
+    padding-top: 30px;
+    font-size: 18px;
+    width: 160px;
+}
+.user-card .card-sets a {
+    color: #787d82;
+}
+.user-card .card-sets {
+    padding: 0 20px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 12px;
+}
+.user-card .card-inner {
+    background-color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.user-card .card-sets a:hover {
+    color: #f01400;
+    background: none;
+    text-decoration: none;
+}
+.r{
+	float: right;
+}
+/*导航栏样式结束*/
+
+/*模态框样式*/
+.fix-modal-open {
+  overflow: initial;
+}
+.modal-dialog{
+	width: 400px;
+}
+.modal-content{
+	padding-bottom: 30px;
+}
+.modal-header h1{
+	margin: 0px;
+	padding: 0px;
+	font-size: 16px;
+    line-height: 49px;
+    height: 49px;
+    color: #787d82;
+    border-bottom: 1px solid #d0d6d9;
+}
+.modal-header h1 span{
+	float: left;
+	width: 80px;
+	text-align: center;
+    height: 49px;
+    line-height: 49px;
+    cursor: pointer;
+}
+.modal-header{
+	position: relative;
+    padding: 0 20px;
+    border: 0px;
+}
+.modal-header .active,.modal-header span:hover{
+	border-bottom: 1px solid #f01400;
+    color: #f01400;
+}
+.close{
+	position: absolute;
+    top: 9px;
+    right: 20px;
+    width: 17px;
+    height: 17px;
+    font-size: 35px;
+    font-weight: 200;
+}
+.modal-body{
+	padding: 0 30px;
+}
+.clearfix:after{
+    content: '\0020';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.form-tip-globle{
+	height: 30px;
+	font-size: 14px;
+	line-height: 30px;
+	margin: 0px;
+}
+.form-tip-wrap{
+	font-size: 12px;
+	height: 20px;
+	margin: 0px;
+}
+.form-horizontal .form-group{
+	margin: 0px;
+	padding: 0px;
+}
+.btn-block{
+	background-color: #cc0000;
+	color: #fff;
+}
+.btn-block:hover,.btn-block:focus{
+	background-color: #ff6464;
+	color: #fff;
+}
+.practice .modal-header{
+    min-height: 16.43px;
+    padding: 15px;
+    border-bottom: 1px solid #e5e5e5;
+}
+.practice .modal-dialog {
+    width: 600px;
+}
+.practice .modal-content {
+    padding-bottom: 0px;
+}
+.practice .modal-body {
+    padding-top: 5px;
+    padding-bottom: 20px;
+}
+/*模态框样式结束*/
+
+/*底部样式*/
+#footer{
+	background-color: #fff;
+}
+#footer p{
+	margin:15px 0px;
+	color: #99a1a6;
+}
+/*底部样式结束*/

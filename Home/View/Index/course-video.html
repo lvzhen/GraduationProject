@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>视频</title>
+	<link rel="stylesheet" href="/GraduationProject/Public/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/GraduationProject/Public/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="/GraduationProject/Public/css/style.css">
+	<link href="/GraduationProject/Public/videoplugin/video-js.css" rel="stylesheet" type="text/css">
+	<link href="/GraduationProject/Public/css/course-video.css" rel="stylesheet" type="text/css">
+	<link href="/GraduationProject/Public/scrollplugin/jquery.mCustomScrollbar.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-inverse">
+			<div class="collapse navbar-collapse" id="navbar-collapse">
+				<ul class="nav navbar-nav navbar-left">
+					<li class="goback">
+						<a href="{:U('Index/courselist',array('id'=>$cid))}"><i class="fa fa-fw fa-chevron-left"></i></a>
+					</li>
+					<li>
+						<a href="javascript:void(0);" class="title"><span>{$ucrs.0.course_name}</span><em> <foreach name='ucrs' item='v' key='k'><eq name='v.order' value="$ord">L{$k+1}：{$v.name}</eq></foreach></em></a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right" id="member">
+					<li style="javas">
+						<!-- <a href="javascript:void(0);" class="icon-msg"> <i class="fa fa-envelope"></i> -->
+						</a>
+					</li>
+					<li class="user-card-box">
+						<a href="javascript:void(0);" class="avatar-a">
+							<img src="{$Think.session.user.avatar}" alt="" class="avatar"></a>
+						<div class="user-card">
+							<div class="card-inner">
+								<div class="card-top">
+									<img src="{$Think.session.user.avatar}" alt="" class="l">	
+									<span class="name">{$Think.session.user.user}</span>
+								</div>
+								<div class="card-history"></div>
+								<div class="card-sets clearfix">
+									<a href="{:U('Index/mpwd')}" class="l">修改密码</a>
+									<a href="javascript:void(0);" class="r exit">退出</a>
+								</div>
+							</div> <i class="fa fa-sort-asc fa-2x"></i>
+						</div>
+					</li>
+				</ul>
+			</div>
+	</nav>
+	<div>
+		<div class="row">
+			<div class="col-md-9 left">
+				<video class="video-js vjs-default-skin" controls preload="none" width="100%" height="544" poste="" data-setup="{}">	
+				   	<source src="{$src}" type='{$type}' />
+				</video>
+				<div class="success">
+					<gt name='ord' value='1'>
+						<a class="btn btn-info" href="{:U('Index/coursevideo',array('ord'=>$ord-1,'cid'=>$cid))}"><i class="fa fa-fw fa-angle-left"></i> 上一课</a>
+						<else/>
+						<a class="btn btn-info" disabled href="jacascript:void(0);">
+							上一课 <i class="fa fa-fw fa-angle-right"></i>
+						</a>
+					</gt>
+					<gt name='ucrs|count' value='$ord'>
+						<a class="btn btn-info" href="{:U('Index/coursevideo',array('ord'=>$ord+1,'cid'=>$cid))}">
+							下一课 <i class="fa fa-fw fa-angle-right"></i>
+						</a>
+						<else/>
+						<a class="btn btn-info" disabled href="jacascript:void(0);">
+							下一课 <i class="fa fa-fw fa-angle-right"></i>
+						</a>
+					</gt>
+					<gt name='ucrs|count' value='$ord'>
+						<a class="btn btn-success over" href="{:U('Index/coursevideo',array('ord'=>$ord+1,'cid'=>$cid,'over'=>$ord))}"><i class="fa fa-fw fa-check"></i> 学完了</a>
+						<else/>
+						<a class="btn btn-success" href="{:U('Index/courselist',array('id'=>$cid,'over'=>$ord))}"><i class="fa fa-fw fa-check"></i> 学完了</a>
+					</gt>
+				</div>
+			</div>
+			<div class="col-md-3 right-list mCustomScrollbar" data-mcs-theme="minimal">
+				<ul class="nav nav-pills nav-stacked navbar-inverse nav-list ">
+					<foreach name='ucrs' item='v' key='k'>
+						<li>
+							<a href="{:U('Index/coursevideo',array('ord'=>$v['order'],'cid'=>$v['cid']))}"> <i class="fa fa-fw fa-play"></i>
+								课时{$k+1}：{$v.name}
+								<span class="pull-right nowcolor">
+									<eq name='v.done' value='1'>
+										<eq name='v.lastlearn' value='1'>
+											正在学习 <i class="fa fa-fw fa-clock-o"></i>
+											<else/>
+											<i class="fa fa-fw fa-circle"></i>
+										</eq>
+									<else/>
+										<eq name='v.islearn' value='0'>
+											<i class="fa fa-fw fa-circle-o"></i>
+										</eq>
+
+										<eq name='v.islearn' value='-1'>
+											<eq name='v.lastlearn' value='1'>
+												正在学习 <i class="fa fa-fw fa-clock-o"></i>
+												<else/>
+												<i class="fa fa-fw fa-adjust"></i>
+											</eq>
+										</eq>
+									</eq>
+								</span>
+							</a>
+						</li>
+					</foreach>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	
+	<script src="/GraduationProject/Public/js/jquery.min.js"></script>
+	<script src="/GraduationProject/Public/js/bootstrap.min.js"></script>
+	<script src="/GraduationProject/Public/videoplugin/video.js"></script>
+	<script src="/GraduationProject/Public/scrollplugin/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script type="text/javascript">
+    	videojs.options.flash.swf = "/GraduationProject/Public/videoplugin/video-js.swf";
+	</script>
+	<script type="text/javascript">
+		$(function(){
+			// $('video').attr('height',($(window).height())*0.84);
+			$('.user-card-box').on('mouseover',function(){
+				$('.user-card').css('visibility','visible');
+			});
+			$('.user-card-box').on('mouseout',function(){
+				$('.user-card').css('visibility','hidden');
+			});
+			$('.exit').on('click',function(){
+				$.ajax({
+					type:'get',
+					url:"/GraduationProject/index.php/Home/Index/signout",
+					data:'',
+					dataType:'json',
+					success:function(data){
+						window.location.href="{:U('Index/index')}";
+					}
+				});
+			});
+		});
+</script>
+</body>
+</html>

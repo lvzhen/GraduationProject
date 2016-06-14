@@ -1,0 +1,272 @@
+<extend name="Index/index" />
+
+<block name='nav'>
+	<li>
+		<a href="{:U('Index/index')}"> <i class="fa fa-fw fa-home"></i>
+			首页
+		</a>
+	</li>
+	<li>
+		<a href="javascript:void(0);" data-toggle="collapse" data-target="#course_management"> <i class="fa fa-fw fa-book"></i>
+			课程
+			<i class="fa fa-fw fa-caret-down d r"></i>
+		</a>
+		<ul id="course_management" class="collapse in">
+			<li class="active">
+				<a href="{:U('Course/course')}">课程管理</a>
+			</li>
+			<li>
+				<a href="{:U('Course/coursetype')}">课程类型管理</a>
+			</li>
+		</ul>
+	</li>
+	<empty name='Think.session.admin_user.id'>
+		<li>
+			<a href="javascript:void(0);" data-toggle="collapse" data-target="#user_management"><i class="fa fa-fw fa-users"></i>
+				用户
+				<i class="fa fa-fw fa-caret-right fa-caret-down dd r"></i></a>
+			<ul id="user_management" class="collapse">
+				<li>
+	                <a href="{:U('User/user')}">用户管理</a>
+	            </li>
+	            <li>
+	                <a href="{:U('user/teacher')}">教师管理</a>
+	            </li>
+	            
+	        </ul>
+		</li>
+	</empty>
+</block>
+
+<block name='course_manage'>
+	<div class="row">
+		<div class="col-md-12">
+			<h3 class="page-header">课时管理</h3>
+			<ol class="breadcrumb">
+				<li>
+					<a href="{:U('Index/index')}">首页</a>
+				</li>
+				<li>
+					<a href="{:U('Course/course')}">课程</a>
+				</li>
+				<li><a href="{:U('Course/course')}">课程管理</a></li>
+				<li class="active">课时管理</li>
+			</ol>
+			<!-- 添加成功提示框 -->
+			<div id="success" class="alert alert-success hide">
+				<a href="#" class="close" data-dismiss="alert">&times;</a>
+				<div class="success"></div>
+			</div>
+			<!-- ** -->
+			<div class="heading list-group-item active clearfix">
+				<h4 class="l_heading">
+					{$rs['course'].course_name}
+					<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#add"> <i class="fa fa-fw fa-plus"></i>
+						课时
+					</button>
+				</h4>
+			</div>
+			
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<ul class="list-group">
+				<foreach name="rs['les']" item='v' key='k'>
+					<li class="list-group-item clearfix">
+						<div class="item-content"> <i class="fa fa-fw fa-file-video-o"></i>
+							课时{$k+1}：{$v.name}
+						</div>
+						<div class="item-action">
+							<a href="#" class="btn btn-link modify" data-toggle="modal" data-target="#edit" data-id="{$v.id}" data-name="{$v.name}" data-title="{$v.title}" data-brief="{$v.brief}" data-path="{$v.path}"><i class="fa fa-fw fa-edit"></i>编辑</a>
+							<a href="javascript:void(0);" class="btn btn-link del" data-id="{$v.id}" data-key="{$k+1}"><i class="fa fa-fw fa-trash"></i>删除</a>
+						</div>
+					</li>
+				</foreach>
+			</ul>
+		</div>
+	</div>
+
+	<!-- 添加课时模态框 -->
+	<div class="modal fade" id="add" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">添加课时</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" id="uploadForm" enctype="multipart/form-data" role="form">
+						<input type="text" value="{$rs['course'].id}" class="cid hide">
+						<input type="text" class="type hide">
+						<input type="text" class="path hide">
+						<div class="form-group left">
+							<label for="name" class="col-md-2 control-label">标题</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control name" name="name" placeholder="请输入标题">	
+								<div class="help-block"></div>
+							</div>
+						</div>
+						<div class="form-group left">
+							<label for="brief" class="col-md-2 control-label">简介</label>
+							<div class="col-md-9">
+								<textarea class="form-control brief" id="brief" rows="3"></textarea>
+							</div>
+						</div>
+						<div class="form-group left">
+							<label for="type" class="col-md-2 control-label">视频</label>
+							<div class="col-md-9">
+								<span class="btn btn-success fileinput-button">
+							        <i class="glyphicon glyphicon-plus"></i>
+							        <span>选择文件...</span>
+							        <!-- The file input field used as target for the file upload widget -->
+							        <input id="input" type="file" name="files" multiple="1">
+							    </span>
+							    <span class="title"></span>
+								<div class="help-block"></div>
+							    <br>
+							    <div id="progress" class="progress progress-striped active hide">
+							        <div class="progress-bar progress-bar-success"></div>
+							    </div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="submit" class="btn btn-primary" id="savelesson">添加</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ***结束** -->
+
+	<!-- 编辑课时模态框 -->
+	<div class="modal fade" id="edit" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">编辑课时</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" id="uploadForm1" enctype="multipart/form-data" role="form">
+						<input type="text" value="{$rs['course'].id}" class="cid hide">
+						<input type="text" class="path hide">
+						<input type="text" class="type hide">
+						<div class="form-group left">
+							<label for="name" class="col-md-2 control-label">标题</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control name" id='name' name="name" placeholder="请输入标题">	
+								<div class="help-block"></div>
+							</div>
+						</div>
+						<div class="form-group left">
+							<label for="brief" class="col-md-2 control-label">简介</label>
+							<div class="col-md-9">
+								<textarea class="form-control brief" id="brief" rows="3"></textarea>
+							</div>
+						</div>
+						<div class="form-group left">
+							<label for="type" class="col-md-2 control-label">视频</label>
+							<div class="col-md-9">
+								<span class="btn btn-success fileinput-button">
+							        <i class="glyphicon glyphicon-plus"></i>
+							        <span>修改文件...</span>
+							        <input id="edit" type="file" name="files" multiple="1">
+							    </span>
+							    <span class="title"></span>
+								<div class="help-block"></div>
+							    <br>
+							    <div id="progress1" class="progress progress-striped active hide">
+							        <div class="progress-bar progress-bar-success"></div>
+							    </div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="submit" class="btn btn-primary" id="editlesson">修改</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ***结束** -->
+</block>
+<block name='script'>
+	<script src="/GraduationProject/Public/admin_js/lesson.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#input').fileupload({
+				url:'{:U("Course/upload")}',
+		        dataType: 'json',
+		        add: function (e, data) {
+		            // data.context = $('<p/>').text('Uploading...').appendTo(document.body);
+		            // data.submit();
+		            console.log(data);
+		            $('.title').eq(0).html(data['files'][0]['name']);
+		            data.submit();
+		            $('#savelesson').attr('disabled',true);
+		        },
+		        progressall: function (e, data) {
+		        	console.log(data);
+			        var progress = parseInt(data.loaded / data.total * 100, 10);
+			        $('#progress').removeClass('hide');
+			        $('#progress .progress-bar').css(
+			            'width',
+			            progress + '%'
+			        );
+			        $('#progress .progress-bar').html(progress+'%');
+			        if(progress == 100){
+			        	$('#progress .progress-bar').html('已上传完成！');
+			        	$('#progress').removeClass('active');
+			        	$('#savelesson').attr('disabled',false);
+			        }
+			    },
+		        done: function (e, data) {
+		        	console.log(data);
+		            $('.path').eq(0).val('/GraduationProject/upload/'+data.result.path);
+		            $('.type').eq(0).val(data.result.type);
+		        }
+		    });
+		    $('#edit').fileupload({
+				url:'{:U("Course/upload")}',
+		        dataType: 'json',
+		        add: function (e, data) {
+		            // data.context = $('<p/>').text('Uploading...').appendTo(document.body);
+		            // data.submit();
+		            console.log(data);
+		            $('.title').eq(1).html(data['files'][0]['name']);
+		            data.submit();
+		            $('#editlesson').attr('disabled',true);
+		        },
+		        progressall: function (e, data) {
+		        	console.log(data);
+			        var progress = parseInt(data.loaded / data.total * 100, 10);
+			        $('#progress1').removeClass('hide');
+			        $('#progress1 .progress-bar').css(
+			            'width',
+			            progress + '%'
+			        );
+			        $('#progress1 .progress-bar').html(progress+'%');
+			        if(progress == 100){
+			        	$('#progress1 .progress-bar').html('已上传完成！');
+			        	$('#progress1').removeClass('active');
+			        	$('#editlesson').attr('disabled',false);
+			        }
+			    },
+		        done: function (e, data) {
+		        	console.log(data);
+		            $('.path').eq(1).val('/GraduationProject/upload/'+data.result.path);
+		            $('.type').eq(1).val(data.result.type);
+		        }
+		    });
+		});
+	</script>
+</block>

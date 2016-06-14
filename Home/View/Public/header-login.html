@@ -1,0 +1,83 @@
+<nav class="navbar navbar-default">
+	<div class="container">
+		<div class="navbar-header">
+			<a href="{:U('Index/index')}" class="navbar-brand logo">
+				<img src="/GraduationProject/Public/img/logo.png" alt="LOGO"></a>
+			<button class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<div class="collapse navbar-collapse" id="navbar-collapse">
+			<ul class="nav navbar-nav navbar-left">
+				<li class="all-lesson">
+					<a href="{:U('Index/AllCourse')}">课程</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right" id="member">
+				<li>
+					<!-- <a href="#" class="icon-msg"><i class="fa fa-envelope"></i></a> -->
+				</li>
+				<li class="user-card-box">
+					<a href="#" class="avatar-a"><img src="{$Think.session.user.avatar}" alt="" class="avatar"></a>
+					<div class="user-card">
+						<div class="card-inner">
+							<div class="card-top">
+								<img src="{$Think.session.user.avatar}" alt="" class="l">
+								<span class="name">{$Think.session.user.user}</span>
+							</div>
+							<div class="card-history">
+								
+							</div>
+							<div class="card-sets clearfix">
+								<a href="{:U('Index/mpwd')}" class="l">修改密码</a>
+								<a href="#" class="r exit">退出</a>
+							</div>
+						</div>
+						<i class="fa fa-sort-asc fa-2x"></i>
+					</div>
+				</li>
+			</ul>
+			<form class="navbar-form navbar-right" role="search" action="{:U('Index/search')}" method="get">
+				<div class="input-group">
+						<input name='result' type="text" class="form-control sch-con" placeholder="搜索你想要的课程">
+						<span class="input-group-btn">
+							<button class="btn btn-default sch" href="" type="submit">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
+						</span>
+				</div>
+			</form>
+		</div>
+	</div>
+</nav>
+<script src="/GraduationProject/Public/js/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('.user-card-box').on('mouseover',function(){
+			$('.user-card').css('visibility','visible');
+		});
+		$('.user-card-box').on('mouseout',function(){
+			$('.user-card').css('visibility','hidden');
+		});
+		$('.exit').on('click',function(){
+			$.ajax({
+				type:'get',
+				url:"/GraduationProject/index.php/Home/Index/signout",
+				data:'',
+				dataType:'json',
+				success:function(data){
+					window.location.href="{:U('Index/index')}";
+				}
+			});
+		});
+		$('.sch').on('click',function(){
+			var schcon = $('.sch-con').val();
+			if (!schcon) {
+				return false;
+			}
+		})
+	});
+	
+</script>

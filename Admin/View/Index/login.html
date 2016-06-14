@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>后台</title>
+	<link rel="stylesheet" href="/GraduationProject/Public/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/GraduationProject/Public/admin_css/login.css">
+</head>
+<body>
+	<div class="container">
+		<form class="signin_form" action="{:U('Admin/Index/login')}" method="post">
+			<h2 class="text-center">登录</h2>
+			<input type="text" class="form-control" placeholder="请输入账号" name="user_admin" data-toggle="tooltip" data-placement="right" data-trigger="focus" title="请输入账号">
+			<input type="password" class="form-control" placeholder="请输入密码" name="pwd_admin"
+			data-toggle="tooltip" data-placement="right" data-trigger="focus" title="请输入密码">
+			<button type="submit" class="btn btn-primary btn-lg btn-block">登录</button>
+		</form>
+	</div>
+
+
+	<script src="/GraduationProject/Public/js/jquery.min.js"></script>
+	<script src="/GraduationProject/Public/js/bootstrap.min.js"></script>
+	<script src="/GraduationProject/Public/admin_js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+@charset 'utf-8';
+body{
+	padding-top: 40px;
+	padding-bottom: 40px;
+	background-color: #eee;
+}
+.signin_form {
+	max-width: 350px;
+	margin: 0 auto;
+}
+input[name='user_admin'],input[name='pwd_admin']{
+	margin-bottom: 10px;
+	font-size: 16px;
+	height: auto;
+	padding: 10px;
+}

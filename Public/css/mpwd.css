@@ -1,0 +1,20 @@
+.panel-default{
+	width: 550px;
+	margin:50px auto;
+}
+.panel-body {
+    line-height: 34px;
+}
+.fg {
+    height: 34px;
+}
+.cl {
+	text-align: right;
+	padding-right: 20px;
+}
+.sure{
+	text-align: center;
+}
+.bd {
+	margin:0 15px;
+}
