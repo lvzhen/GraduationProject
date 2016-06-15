@@ -101,8 +101,8 @@
 										</button>
 										<ul class="dropdown-menu" role="menu">
 										    <li data-toggle="modal" class="uploadpic" data-target="#editpic" data-id="{$v.id}" data-coursename='{$v.course_name}' data-pic='{$v.course_pic}'><a href="javascript:void(0);" ><i class="fa fa-fw fa-upload"></i> 上传封面图片</a></li>
-										    <li><a href='{:U("Course/lesson",array('id'=>$v['id']))}'><i class="fa fa-fw fa-sliders"></i> 课时管理</a></li>
-										    <li><a href="{:U("Course/checkout",array('id'=>$v['id']))}"><i class="fa fa-fw fa-pencil"></i> 试题管理</a></li>
+										    <li><a href='{:U("Course/lesson",array("id"=>$v["id"]))}'><i class="fa fa-fw fa-sliders"></i> 课时管理</a></li>
+										    <li><a href="{:U('Course/checkout',array('id'=>$v['id']))}"><i class="fa fa-fw fa-pencil"></i> 试题管理</a></li>
 									   </ul>
 									</div>
 								</td>
@@ -267,5 +267,8 @@
 
 </block>
 <block name="script">
-	<script src="/GraduationProject/Public/admin_js/course.js"></script>
+	<script type="text/javascript">
+		var ROOT = "__ROOT__/";
+	</script>
+	<script src="__AJS__/course.js"></script>
 </block>

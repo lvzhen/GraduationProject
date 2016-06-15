@@ -20,7 +20,7 @@ $(function(){
 	function check(cid,p){
 		$.ajax({
 			type:'get',
-			url:'/GraduationProject/index.php/Home/Index/check',
+			url:URL+'/check',
 			dataType:'json',
 			data:{cid:cid,p:p},
 			success:function(data){
@@ -38,7 +38,7 @@ $(function(){
 	function answ(id,v){
 		$.ajax({
 			type:'get',
-			url:'/GraduationProject/index.php/Home/Index/answ',
+			url:URL+'/answ',
 			dataType:'json',
 			data:{id:id,v:v},
 		})
@@ -47,7 +47,7 @@ $(function(){
 	function score(cid){
 		$.ajax({
 			type:'get',
-			url:'/GraduationProject/index.php/Home/Index/score',
+			url:URL+'/score',
 			dataType:'json',
 			data:{cid:cid},
 			success:function(data){

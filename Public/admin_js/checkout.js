@@ -38,7 +38,7 @@ $(function(){
 		if(ques && op_a && op_b && op_c && op_d) {
 			$.ajax({
 				type:'post',
-				url:'http://localhost/GraduationProject/index.php/Admin/Course/addques.html',
+				url:'./addques.html',
 				dataType:'json',
 				data:alldata+'&cid='+cid,
 				success:function(data){
@@ -104,7 +104,7 @@ $(function(){
 		if(ques && op_a && op_b && op_c && op_d) {
 			$.ajax({
 				type:'post',
-				url:'http://localhost/GraduationProject/index.php/Admin/Course/editques.html',
+				url:'./editques.html',
 				dataType:'json',
 				data:alldata+'&id='+id,
 				success:function(data){
@@ -130,7 +130,7 @@ $(function(){
 		if (r==true) {
 			$.ajax({
 				type:'post',
-				url:'http://localhost/GraduationProject/index.php/Admin/Course/delques.html',
+				url:'./delques.html',
 				dataType:'json',
 				data:'id='+id,
 				success:function(data){

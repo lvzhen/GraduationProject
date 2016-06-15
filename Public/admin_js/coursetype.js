@@ -18,7 +18,7 @@ $(function(){
 		if(check(name,order,code) == 'yes'){
 			$.ajax({
 				type:'post',
-				url:"http://localhost/GraduationProject/index.php/Admin/Course/addclasstype.html",
+				url:"./addclasstype.html",
 				data:'name='+name+'&order='+order+'&code='+code,
 				dataType:'json',
 				success:function(data){
@@ -47,13 +47,13 @@ $(function(){
 		check(name,order,code,id);
 		$.ajax({
 			type:'post',
-			url:'http://localhost/GraduationProject/index.php/Admin/Course/editclass.html',
+			url:'./editclass.html',
 			data:'id='+id+'&name='+name+'&order='+order+'&code='+code,
 			dataType:'json',
 			success:function(data){
 				$('#edit').modal('hide');
 				$('.success').html('编辑分类成功。');
-				$("#table").load("http://localhost/GraduationProject/index.php/Admin/Course/coursetype.html #table");
+				$("#table").load(location.href+" #table");
 				$('#success').removeClass('hide');
 				setTimeout(function(){
 					$('#success').addClass('hide');
@@ -79,13 +79,13 @@ $(function(){
 		var id = $('.name').eq(1).data('id');
 		$.ajax({
 			type:'post',
-			url:'http://localhost/GraduationProject/index.php/Admin/Course/delclass.html',
+			url:'./delclass.html',
 			data:'id='+id,
 			dataType:'json',
 			success:function(data){
 				$('#edit').modal('hide');
 				$('.success').html('删除分类成功。');
-				$("#table").load("http://localhost/GraduationProject/index.php/Admin/Course/coursetype.html #table");
+				$("#table").load(location.href+" #table");
 				$('#success').removeClass('hide');
 				setTimeout(function(){
 					$('#success').addClass('hide');
@@ -125,7 +125,7 @@ $(function(){
 			$.ajax({
 				type:'post',
 				async:false,
-				url:"http://localhost/GraduationProject/index.php/Admin/Course/isexist.html",
+				url:"./isexist.html",
 				data:'code='+code+'&id='+id,
 				dataType:'json',
 				success:function(data){

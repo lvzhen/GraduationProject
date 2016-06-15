@@ -150,7 +150,7 @@
             $auser = I("session.admin_user");
             $data['teacher'] = $auser['id'];
             $data['join_num'] = 0;
-            $data['course_pic'] = '/GraduationProject/Public/img/course.png';
+            $data['course_pic'] = '/Public/img/course.png';
             $courseDb = M('course');
             $rs = $courseDb->add($data);
             $this->ajaxReturn($rs);
@@ -252,7 +252,7 @@
             $upload = new \Think\Upload(); // 实例化上传类
             $upload->maxSize = 0; // 设置附件上传大小
             $upload->exts = array('mp4', 'flv', 'wmv', 'mkv'); // 设置附件上传类型
-            $upload->rootPath = '../GraduationProject/upload/'; // 设置附件上传根目录
+            $upload->rootPath = './upload/'; // 设置附件上传根目录
             $upload->savePath = 'video/'; // 设置附件上传（子）目录
             // 上传文件
             $info = $upload->upload();
@@ -277,7 +277,7 @@
             $upload = new \Think\Upload(); // 实例化上传类
             $upload->maxSize = 0; // 设置附件上传大小
             $upload->exts = array('jpg', 'gif', 'png', 'jpeg'); // 设置附件上传类型
-            $upload->rootPath = '../GraduationProject/upload/'; // 设置附件上传根目录
+            $upload->rootPath = './upload/'; // 设置附件上传根目录
             $upload->savePath = 'pic/'; // 设置附件上传（子）目录
             // 上传文件
             $info = $upload->upload();

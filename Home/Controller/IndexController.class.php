@@ -352,6 +352,7 @@ class IndexController extends Controller {
 			->join('userlesson ul on uc.id=ul.ucid', 'left')
 			->join('lesson l on l.order=ul.lord and l.cid=uc.cid', 'left')
 			->select();
+			// dump($ucrs);
 		foreach ($ucrs as $k => $v) {
 			if ($v['lord'] == $ord) {
 				$src = $v['path'];

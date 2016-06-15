@@ -37,7 +37,7 @@ $(function(){
 			if (pwd === rpwd) {
 				$.ajax({
 					type:'post',
-					url:'http://localhost/GraduationProject/index.php/Admin/User/addteach.html',
+					url:'./addteach.html',
 					dataType:'json',
 					data:{name:name,pwd:pwd},
 					success:function(data){
@@ -79,7 +79,7 @@ $(function(){
 			if (pwd === rpwd) {
 				$.ajax({
 					type:'post',
-					url:'http://localhost/GraduationProject/index.php/Admin/User/editpwd.html',
+					url:'./editpwd.html',
 					dataType:'json',
 					data:{id:id,pwd:pwd},
 					success:function(data){

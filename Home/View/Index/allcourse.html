@@ -3,10 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>全部课程</title>
-	<link rel="stylesheet" href="/GraduationProject/Public/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/GraduationProject/Public/css/style.css">
-	<link rel="stylesheet" href="/GraduationProject/Public/css/allcourse.css"></head>
-	<link rel="stylesheet" href="/GraduationProject/Public/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="__CSS__/bootstrap.min.css">
+	<link rel="stylesheet" href="__CSS__/style.css">
+	<link rel="stylesheet" href="__CSS__/allcourse.css"></head>
+	<link rel="stylesheet" href="__CSS__/font-awesome.min.css" />
 <body>
 	<empty name="Think.session.user">
     	<include file="Public/header" />
@@ -73,7 +73,7 @@
 								    </empty>
 										<div class="course-item">
 											<div class="course-img">
-												<img class="courseimg" src="{$v.course_pic}" alt="lesson"></div>
+												<img class="courseimg" src="__ROOT__/{$v.course_pic}" alt="lesson"></div>
 											<div class="course-info">
 												<div class="title">
 													<foreach name='isjoin' item='vv'>
@@ -111,8 +111,8 @@
 
 	<include file="Public/footer" />
 
-	<script src="/GraduationProject/Public/js/jquery.min.js"></script>
-	<script src="/GraduationProject/Public/js/bootstrap.min.js"></script>
+	<script src="__JS__/jquery.min.js"></script>
+	<script src="__JS__/bootstrap.min.js"></script>
 	<script type="text/javascript">
 	$(function(){
 		var sort = '{$Think.get.sort}';

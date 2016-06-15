@@ -22,7 +22,7 @@ $(function(){
 		if (name) {
 			$.ajax({
 				type:'post',
-				url:'http://localhost/GraduationProject/index.php/Admin/Course/addcourse.html',
+				url:'./addcourse.html',
 				dataType:'json',
 				data:'name='+name+'&brief='+brief+'&type='+type,
 				success:function(data){
@@ -65,7 +65,7 @@ $(function(){
 		if (name) {
 			$.ajax({
 				type:'post',
-				url:'http://localhost/GraduationProject/index.php/Admin/Course/editcourse.html',
+				url:'./editcourse.html',
 				dataType:'json',
 				data:'id='+id+'&name='+name+'&brief='+brief+'&type='+type,
 				success:function(data){
@@ -90,7 +90,7 @@ $(function(){
 		if (r==true) {
 			$.ajax({
 				type:'post',
-				url:'http://localhost/GraduationProject/index.php/Admin/Course/delcourse.html',
+				url:'./delcourse.html',
 				data:'id='+id,
 				dataType:'json',
 				success:function(data){
@@ -109,7 +109,7 @@ $(function(){
 	 * 上传操作
 	 */
 	$('#input').fileupload({
-		url:'http://localhost/GraduationProject/index.php/Admin/Course/upload.html',
+		url:'./upload.html',
         dataType: 'json',
         add: function (e, data) {
             // data.context = $('<p/>').text('Uploading...').appendTo(document.body);
@@ -135,12 +135,12 @@ $(function(){
 	        }
 	    },
         done: function (e, data) {
-        	console.log(data);
-            $('.path').val('/GraduationProject/upload/'+data.result);
+        	// console.log(data);
+            $('.path').val('upload/'+data.result);
         }
     });
     $('#pic').fileupload({
-		url:'http://localhost/GraduationProject/index.php/Admin/Course/uploadpic.html',
+		url:'./uploadpic.html',
         dataType: 'json',
         add: function (e, data) {
             // data.context = $('<p/>').text('Uploading...').appendTo(document.body);
@@ -166,8 +166,8 @@ $(function(){
 	    },
         done: function (e, data) {
         	console.log(data);
-            $('.path').val('/GraduationProject/upload/'+data.result);
-            $('.img-thumbnail').attr('src','/GraduationProject/upload/'+data.result);
+            $('.path').val('upload/'+data.result);
+            $('.img-thumbnail').attr('src',ROOT+'upload/'+data.result);
         }
     });
 	/**
@@ -179,7 +179,7 @@ $(function(){
 		var pic = $(this).data('pic');
 		$('.name').eq(2).val(name);
 		$('.name').eq(2).data('id',id);
-		$('.img-thumbnail').attr('src',pic);
+		$('.img-thumbnail').attr('src',ROOT+pic);
 	});
 
 	/**
@@ -190,7 +190,7 @@ $(function(){
 		var path = $('.path').val();
 		$.ajax({
 			type:'post',
-			url:'http://localhost/GraduationProject/index.php/Admin/Course/savepic.html',
+			url:'./savepic.html',
 			dataType:'json',
 			data:'id='+id+'&path='+path,
 			success:function(data){

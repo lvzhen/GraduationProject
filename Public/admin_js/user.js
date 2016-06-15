@@ -35,7 +35,7 @@ $(function(){
 			if (pwd === rpwd) {
 				$.ajax({
 					type:'post',
-					url:'http://localhost/GraduationProject/index.php/Admin/User/editpwd.html',
+					url:'./editpwd.html',
 					dataType:'json',
 					data:{id:id,pwd:pwd},
 					success:function(data){

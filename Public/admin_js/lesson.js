@@ -34,7 +34,7 @@ $(function(){
 		if (name && video) {
 			$.ajax({
 				type:'post',
-				url:'http://localhost/GraduationProject/index.php/Admin/Course/addlesson.html',
+				url:URL+'/addlesson.html',
 				dataType:'json',
 				data:'cid='+cid+'&path='+path+'&name='+name+'&brief='+brief+'&title='+video+'&type='+type,
 				success:function(data){
@@ -84,7 +84,7 @@ $(function(){
 		if (name && video) {
 			$.ajax({
 				type:'post',
-				url:'http://localhost/GraduationProject/index.php/Admin/Course/editlesson.html',
+				url:URL+'/editlesson.html',
 				dataType:'json',
 				data:'id='+id+'&path='+path+'&name='+name+'&brief='+brief+'&title='+video+'&type='+type,
 				success:function(data){
@@ -109,7 +109,7 @@ $(function(){
 		if (r==true) {
 			$.ajax({
 				type:'post',
-				url:'http://localhost/GraduationProject/index.php/Admin/Course/del.html',
+				url:URL+'/del.html',
 				dataType:'json',
 				data:'id='+id,
 				success:function(data){

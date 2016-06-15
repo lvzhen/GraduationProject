@@ -200,8 +200,10 @@
 	<!-- ***结束** -->
 </block>
 <block name='script'>
-	<script src="/GraduationProject/Public/admin_js/lesson.js"></script>
+	<script src="__PUBLIC__/admin_js/lesson.js"></script>
 	<script type="text/javascript">
+		var URL = "__URL__";
+        var ROOT = "__ROOT__";
 		$(function(){
 			$('#input').fileupload({
 				url:'{:U("Course/upload")}',
@@ -231,7 +233,7 @@
 			    },
 		        done: function (e, data) {
 		        	console.log(data);
-		            $('.path').eq(0).val('/GraduationProject/upload/'+data.result.path);
+		            $('.path').eq(0).val(data.result.path);
 		            $('.type').eq(0).val(data.result.type);
 		        }
 		    });
@@ -263,7 +265,7 @@
 			    },
 		        done: function (e, data) {
 		        	console.log(data);
-		            $('.path').eq(1).val('/GraduationProject/upload/'+data.result.path);
+		            $('.path').eq(1).val(data.result.path);
 		            $('.type').eq(1).val(data.result.type);
 		        }
 		    });

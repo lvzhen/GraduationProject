@@ -4,10 +4,11 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>我的学习网站</title>
-	<link rel="stylesheet" href="/GraduationProject/Public/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/GraduationProject/Public/css/style.css">
-	<link rel="stylesheet" href="/GraduationProject/Public/css/index.css"></head>
-	<link rel="stylesheet" href="/GraduationProject/Public/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="__CSS__/bootstrap.min.css">
+	<link rel="stylesheet" href="__CSS__/style.css">
+	<link rel="stylesheet" href="__CSS__/index.css">
+	<link rel="stylesheet" href="__CSS__/font-awesome.min.css" />
+</head>
 <body>
     <empty name="Think.session.user">
     	<include file="Public/header" />
@@ -23,11 +24,11 @@
 		</ol>
 		<div class="carousel-inner">
 			<div class="item active">
-				<img src="/GraduationProject/Public/img/slide1.png" alt="第一张"></div>
+				<img src="__IMG__/slide1.png" alt="第一张"></div>
 			<div class="item" style="background: rgb(58, 115, 156">
-				<img src="/GraduationProject/Public/img/slide2.png" alt="第二张"></div>
+				<img src="__IMG__/slide2.png" alt="第二张"></div>
 			<div class="item" style="background: rgb(242, 236, 208);">
-				<img src="/GraduationProject/Public/img/slide3.png" alt="第三张"></div>
+				<img src="__IMG__/slide3.png" alt="第三张"></div>
 		</div>
 		<a href="#myCarousel" data-slide="prev" class="carousel-control left">
 			<span class="glyphicon glyphicon-chevron-left"></span>
@@ -62,7 +63,7 @@
 					    </empty>
 							<div class="course-item">
 								<div class="course-img">
-									<img class="courseimg" src="{$v.course_pic}" alt="lesson"></div>
+									<img class="courseimg" src="__ROOT__/{$v.course_pic}" alt="lesson"></div>
 								<div class="course-info">
 									<div class="title">
 										<foreach name='isjoin' item='vv'>
@@ -96,8 +97,8 @@
 	<!-- 课程展示结束 -->
 	<include file="Public/footer" />
 
-	<script src="/GraduationProject/Public/js/jquery.min.js"></script>
-	<script src="/GraduationProject/Public/js/bootstrap.min.js"></script>
-	<script src="/GraduationProject/Public/js/index.js"></script>
+	<script src="__JS__/jquery.min.js"></script>
+	<script src="__JS__/bootstrap.min.js"></script>
+	<script src="__JS__/index.js"></script>
 </body>
 </html>
