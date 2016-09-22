@@ -136,14 +136,14 @@
 	</section>
 
 
-	<include file='public/footer' />
+	<include file='Public/footer' />
 	<script src="__JS__/jquery.min.js"></script>
 	<script src="__JS__/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			$('.join').on('click',function(){
 				<empty name="Think.session.user">
-					var content_html = '<include file="public/login" />';
+					var content_html = '<include file="Public/login" />';
 					$('.modal-content').html(content_html);
 					var url = $('.join > a ').attr('href');
 					// alert(url);

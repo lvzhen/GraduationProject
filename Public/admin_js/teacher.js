@@ -44,6 +44,7 @@ $(function(){
 						if (data == 1) {
 							$('#add').modal('hide');
 							$('.success').html('添加教师成功。');
+							$("#table").load(location.href+" #table");
 							$('#success').removeClass('hide');
 							setTimeout(function(){
 								$('#success').addClass('hide');

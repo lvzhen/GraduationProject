@@ -269,7 +269,7 @@ class IndexController extends Controller {
 			$s = session();
 			// dump($s);
 			if (IS_AJAX) {
-				$html = $this->fetch('public/practice');
+				$html = $this->fetch('Public/practice');
 				$this->ajaxReturn($html);
 			}
 		}
@@ -321,7 +321,7 @@ class IndexController extends Controller {
 		$this->assign('score',$score);
 		$this->assign('count',$count);
 		if (IS_AJAX) {
-			$html = $this->fetch('public/score');
+			$html = $this->fetch('Public/score');
 			$this->ajaxReturn($html);
 		}
 	}

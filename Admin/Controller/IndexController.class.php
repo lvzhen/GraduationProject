@@ -22,7 +22,7 @@
             $user['pwd'] = md5(trim(I('post.pwd_admin')));
             $usrDb = M('user');
             $rs = $usrDb->where('user="' . $user['name'] . '" and isteach=1 or isteach=2')->find();
-            // var_dump($rs);
+             //var_dump($rs);
             if ($rs) {
                 $user['id'] = $rs['id'];
                 $user['isteach'] = $rs['isteach'];

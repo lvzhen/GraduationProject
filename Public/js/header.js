@@ -46,7 +46,7 @@ $(function(){
 			function submit(){
 				$.ajax({
 					type:'post',
-					url:'./signup',
+					url:'/GraduationProject/index.php/Home/index/signup',
 					dataType: 'json',
 					data:'u='+username+'&p='+pwd,
 					success: function(data){
@@ -75,7 +75,7 @@ $(function(){
 			}
 			$.ajax({
 				type:'post',
-				url:"./login",
+				url:"/GraduationProject/index.php/Home/index/login",
 				dataType: 'json',
 				data:'u='+username+'&p='+pwd,
 				success:function(data){
